@@ -36,7 +36,25 @@ extension ContactListViewController {
     private func configureNavBar() {
         title = "Contacts"
         navigationController?.navigationBar.prefersLargeTitles = true
+        setupNavBarAppearance()
         setupRightBarButton()
+    }
+    
+    private func setupNavBarAppearance() {
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = UIColor(
+            red: 21/255,
+            green: 101/255,
+            blue: 192/255,
+            alpha: 194/255
+        )
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        navigationController?.navigationBar.tintColor = .white
     }
     
     private func setupRightBarButton() {
