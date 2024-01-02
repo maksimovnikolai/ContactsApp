@@ -16,6 +16,8 @@ final class ContactListViewController: UIViewController {
         return tableView
     }()
     
+    private var contacts: [Contact] = []
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,13 @@ final class ContactListViewController: UIViewController {
 extension ContactListViewController {
     
     private func commonInit() {
+        configureNavBar()
         configureTableView()
+    }
+    
+    private func configureNavBar() {
+        title = "Contacts"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureTableView() {
@@ -41,11 +49,15 @@ extension ContactListViewController {
 // MARK: - UITableViewDataSource
 extension ContactListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath)
+        let contact = contacts[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.text = contact.fullName
+        cell.contentConfiguration = content
         return cell
     }
 }
