@@ -12,6 +12,7 @@
 		AD049FEB2B44555100C7226B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD049FEA2B44555100C7226B /* Assets.xcassets */; };
 		AD049FEE2B44555100C7226B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD049FEC2B44555100C7226B /* LaunchScreen.storyboard */; };
 		AD049FFB2B4457F000C7226B /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049FFA2B4457F000C7226B /* Contact.swift */; };
+		AD049FFD2B4458DF00C7226B /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049FFC2B4458DF00C7226B /* ContactListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		AD049FED2B44555100C7226B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD049FEF2B44555100C7226B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD049FFA2B4457F000C7226B /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		AD049FFC2B4458DF00C7226B /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		AD049FF82B4455E100C7226B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD049FFC2B4458DF00C7226B /* ContactListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD049FFB2B4457F000C7226B /* Contact.swift in Sources */,
+				AD049FFD2B4458DF00C7226B /* ContactListViewController.swift in Sources */,
 				AD049FE22B44555000C7226B /* AppDelegate.swift in Sources */,
 				AD049FE42B44555000C7226B /* SceneDelegate.swift in Sources */,
 			);
