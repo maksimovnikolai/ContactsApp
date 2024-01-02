@@ -36,6 +36,17 @@ extension ContactListViewController {
     private func configureNavBar() {
         title = "Contacts"
         navigationController?.navigationBar.prefersLargeTitles = true
+        setupRightBarButton()
+    }
+    
+    private func setupRightBarButton() {
+        let presentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentNewContactController))
+        navigationItem.rightBarButtonItem = presentButton
+    }
+    
+    @objc
+    private func presentNewContactController() {
+        print("it's work")
     }
     
     private func configureTableView() {
