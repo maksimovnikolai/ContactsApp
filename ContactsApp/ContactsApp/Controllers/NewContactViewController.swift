@@ -11,6 +11,7 @@ final class NewContactViewController: UIViewController {
     
     // MARK: Private properties
     private var navigationBar = UINavigationBar()
+    private var doneButton = UIBarButtonItem()
     private let nameTextField: UITextField = .makeTextField(pHolder: "First name")
     private let lastNameTextField: UITextField = .makeTextField(pHolder: "Last name")
     private let nameLabel: UILabel = .makeLabel(withTitle: "Name", size: 16)
@@ -20,6 +21,7 @@ final class NewContactViewController: UIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         commonInit()
     }
 }
@@ -29,16 +31,20 @@ private extension NewContactViewController {
     
     func commonInit() {
         view.backgroundColor = .systemBackground
+        
         setupConstraintsForNavBar()
         setupNavigationBar()
         setupConstraintsForVStack()
         setupVStack()
+        configureNameTextField()
+        
     }
     
     // MARK: Configure Navigation Bar
     func setupNavigationBar() {
         let cancelButton = getBurButtonItem(withTitle: "Cancel", action: #selector(cancelButtonPressed))
-        let doneButton = getBurButtonItem(withTitle: "Done", action: nil)
+        doneButton = getBurButtonItem(withTitle: "Done", action: #selector(doneButtonPressed))
+        doneButton.isEnabled = false
         
         let navigationItem = UINavigationItem(title: "New Contact")
         navigationItem.leftBarButtonItem = cancelButton
@@ -68,7 +74,17 @@ private extension NewContactViewController {
         )
     }
     
-    @objc func cancelButtonPressed() {
+    @objc
+    func cancelButtonPressed() {
+        dismiss(animated: true)
+    }
+    
+    @objc
+    func doneButtonPressed() {
+        saveEndExit()
+    }
+   
+    func saveEndExit() {
         dismiss(animated: true)
     }
     
@@ -87,6 +103,17 @@ private extension NewContactViewController {
         lastNameVStack.addArrangedSubview(lastNameTextField)
         
         [nameVStack, lastNameVStack].forEach { verticalStack.addArrangedSubview($0) }
+    }
+    
+    // MARK: Configure Name TexField
+    func configureNameTextField() {
+        nameTextField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
+    }
+    
+    @objc
+    func nameTextFieldDidChange() {
+        guard let nameTextField = nameTextField.text else { return }
+        doneButton.isEnabled = !nameTextField.isEmpty
     }
 }
 
