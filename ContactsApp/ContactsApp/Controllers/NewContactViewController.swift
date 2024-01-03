@@ -11,11 +11,15 @@ final class NewContactViewController: UIViewController {
     
     // MARK: Private properties
     private var navigationBar = UINavigationBar()
+    private let nameTextField: UITextField = .makeTextField(pHolder: "First name")
+    private let lastNameTextField: UITextField = .makeTextField(pHolder: "Last name")
+    private let nameLabel: UILabel = .makeLabel(withTitle: "Name", size: 16)
+    private let lastNameLabel: UILabel = .makeLabel(withTitle: "Last name", size: 16)
+    private let verticalStack: UIStackView = .makeStackView(axis: .vertical, spacing: 20)
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         commonInit()
     }
 }
@@ -24,10 +28,14 @@ final class NewContactViewController: UIViewController {
 private extension NewContactViewController {
     
     func commonInit() {
+        view.backgroundColor = .systemBackground
         setupConstraintsForNavBar()
         setupNavigationBar()
+        setupConstraintsForVStack()
+        setupVStack()
     }
     
+    // MARK: Configure Navigation Bar
     func setupNavigationBar() {
         let cancelButton = getBurButtonItem(withTitle: "Cancel", action: #selector(cancelButtonPressed))
         let doneButton = getBurButtonItem(withTitle: "Done", action: nil)
@@ -41,10 +49,12 @@ private extension NewContactViewController {
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.backgroundColor = UIColor(red: 21/255,
-                                                          green: 101/255,
-                                                          blue: 192/255,
-                                                          alpha: 194/255)
+        navigationBarAppearance.backgroundColor = UIColor(
+            red: 21/255,
+            green: 101/255,
+            blue: 192/255,
+            alpha: 194/255
+        )
         navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationBar.standardAppearance = navigationBarAppearance
     }
@@ -61,6 +71,23 @@ private extension NewContactViewController {
     @objc func cancelButtonPressed() {
         dismiss(animated: true)
     }
+    
+    // MARK: Configure Vertical Stack View
+    func setupVStack() {
+        let nameVStack: UIStackView = .makeStackView(axis: .vertical)
+        nameVStack.spacing = 4
+        nameVStack.distribution = .fillProportionally
+        nameVStack.addArrangedSubview(nameLabel)
+        nameVStack.addArrangedSubview(nameTextField)
+        
+        let lastNameVStack: UIStackView = .makeStackView(axis: .vertical)
+        lastNameVStack.spacing = 4
+        lastNameVStack.distribution = .fillProportionally
+        lastNameVStack.addArrangedSubview(lastNameLabel)
+        lastNameVStack.addArrangedSubview(lastNameTextField)
+        
+        [nameVStack, lastNameVStack].forEach { verticalStack.addArrangedSubview($0) }
+    }
 }
 
 // MARK: - Constraints
@@ -75,6 +102,14 @@ private extension NewContactViewController {
             navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
+    
+    func setupConstraintsForVStack() {
+        verticalStack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(verticalStack)
+        NSLayoutConstraint.activate([
+            verticalStack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
+            verticalStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            verticalStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+        ])
+    }
 }
-
-
