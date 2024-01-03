@@ -13,6 +13,7 @@
 		AD049FEE2B44555100C7226B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD049FEC2B44555100C7226B /* LaunchScreen.storyboard */; };
 		AD049FFB2B4457F000C7226B /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049FFA2B4457F000C7226B /* Contact.swift */; };
 		AD049FFD2B4458DF00C7226B /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049FFC2B4458DF00C7226B /* ContactListViewController.swift */; };
+		AD049FFF2B456FD400C7226B /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049FFE2B456FD400C7226B /* NewContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AD049FEF2B44555100C7226B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD049FFA2B4457F000C7226B /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AD049FFC2B4458DF00C7226B /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
+		AD049FFE2B456FD400C7226B /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				AD049FFC2B4458DF00C7226B /* ContactListViewController.swift */,
+				AD049FFE2B456FD400C7226B /* NewContactViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD049FFB2B4457F000C7226B /* Contact.swift in Sources */,
+				AD049FFF2B456FD400C7226B /* NewContactViewController.swift in Sources */,
 				AD049FFD2B4458DF00C7226B /* ContactListViewController.swift in Sources */,
 				AD049FE22B44555000C7226B /* AppDelegate.swift in Sources */,
 				AD049FE42B44555000C7226B /* SceneDelegate.swift in Sources */,

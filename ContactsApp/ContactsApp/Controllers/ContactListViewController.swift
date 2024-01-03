@@ -64,7 +64,8 @@ extension ContactListViewController {
     
     @objc
     private func presentNewContactController() {
-        print("it's work")
+        let newContactVC = NewContactViewController()
+        present(newContactVC, animated: true)
     }
     
     private func configureTableView() {
