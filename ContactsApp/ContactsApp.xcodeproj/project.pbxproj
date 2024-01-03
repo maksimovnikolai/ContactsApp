@@ -16,6 +16,7 @@
 		AD049FFF2B456FD400C7226B /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD049FFE2B456FD400C7226B /* NewContactViewController.swift */; };
 		AD04A0022B45996100C7226B /* UITextField + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A0012B45996100C7226B /* UITextField + extension.swift */; };
 		AD04A0042B459D3300C7226B /* UILabel + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A0032B459D3300C7226B /* UILabel + extension.swift */; };
+		AD04A0062B459F7A00C7226B /* UIStackView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A0052B459F7A00C7226B /* UIStackView+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		AD049FFE2B456FD400C7226B /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 		AD04A0012B45996100C7226B /* UITextField + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + extension.swift"; sourceTree = "<group>"; };
 		AD04A0032B459D3300C7226B /* UILabel + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + extension.swift"; sourceTree = "<group>"; };
+		AD04A0052B459F7A00C7226B /* UIStackView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				AD04A0012B45996100C7226B /* UITextField + extension.swift */,
 				AD04A0032B459D3300C7226B /* UILabel + extension.swift */,
+				AD04A0052B459F7A00C7226B /* UIStackView+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				AD049FFF2B456FD400C7226B /* NewContactViewController.swift in Sources */,
 				AD04A0042B459D3300C7226B /* UILabel + extension.swift in Sources */,
 				AD049FFD2B4458DF00C7226B /* ContactListViewController.swift in Sources */,
+				AD04A0062B459F7A00C7226B /* UIStackView+extension.swift in Sources */,
 				AD049FE22B44555000C7226B /* AppDelegate.swift in Sources */,
 				AD049FE42B44555000C7226B /* SceneDelegate.swift in Sources */,
 			);

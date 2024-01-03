@@ -9,6 +9,9 @@ import UIKit
 
 final class NewContactViewController: UIViewController {
     
+    // MARK: Public properties
+    weak var delegate: NewContactViewControllerDelegate?
+    
     // MARK: Private properties
     private var navigationBar = UINavigationBar()
     private var doneButton = UIBarButtonItem()
@@ -31,7 +34,6 @@ private extension NewContactViewController {
     
     func commonInit() {
         view.backgroundColor = .systemBackground
-        
         setupConstraintsForNavBar()
         setupNavigationBar()
         setupConstraintsForVStack()
@@ -85,6 +87,11 @@ private extension NewContactViewController {
     }
    
     func saveEndExit() {
+        guard let firstName = nameTextField.text else { return }
+        guard let lastName = lastNameTextField.text else { return }
+        
+        let contact = Contact(name: firstName, surName: lastName)
+        delegate?.saveContact(contact)
         dismiss(animated: true)
     }
     

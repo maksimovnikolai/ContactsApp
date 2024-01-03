@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NewContactViewControllerDelegate: AnyObject {
+    func saveContact(_ contact: Contact)
+}
+
 final class ContactListViewController: UIViewController {
     
     // MARK: Private properties
@@ -58,13 +62,18 @@ extension ContactListViewController {
     }
     
     private func setupRightBarButton() {
-        let presentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentNewContactController))
+        let presentButton = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(presentNewContactController)
+        )
         navigationItem.rightBarButtonItem = presentButton
     }
     
     @objc
     private func presentNewContactController() {
         let newContactVC = NewContactViewController()
+        newContactVC.delegate = self
         present(newContactVC, animated: true)
     }
     
@@ -89,5 +98,14 @@ extension ContactListViewController: UITableViewDataSource {
         content.text = contact.fullName
         cell.contentConfiguration = content
         return cell
+    }
+}
+
+// MARK: - NewContactViewControllerDelegate
+extension ContactListViewController: NewContactViewControllerDelegate {
+    
+    func saveContact(_ contact: Contact) {
+        contacts.append(contact)
+        tableView.reloadData()
     }
 }
