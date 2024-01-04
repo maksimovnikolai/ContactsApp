@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewContactViewControllerDelegate: AnyObject {
-    func saveContact(_ contact: Contact)
+    func saveContact(_ newContactViewController: NewContactViewController , _ contact: Contact)
 }
 
 final class ContactListViewController: UIViewController {
@@ -104,7 +104,7 @@ extension ContactListViewController: UITableViewDataSource {
 // MARK: - NewContactViewControllerDelegate
 extension ContactListViewController: NewContactViewControllerDelegate {
     
-    func saveContact(_ contact: Contact) {
+    func saveContact(_ newContactViewController: NewContactViewController, _ contact: Contact) {
         contacts.append(contact)
         tableView.reloadData()
     }

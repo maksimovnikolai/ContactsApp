@@ -91,7 +91,7 @@ private extension NewContactViewController {
         guard let lastName = lastNameTextField.text else { return }
         
         let contact = Contact(name: firstName, surName: lastName)
-        delegate?.saveContact(contact)
+        delegate?.saveContact(self, contact)
         dismiss(animated: true)
     }
     
