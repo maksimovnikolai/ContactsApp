@@ -14,13 +14,18 @@ protocol NewContactViewControllerDelegate: AnyObject {
 final class ContactListViewController: UIViewController {
     
     // MARK: Private properties
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
+    private let tableView = UITableView()
     
-    private var contacts: [Contact] = []
+    private var contacts: [Contact] = [] {
+        didSet {
+            print(Thread.current)
+            configureBackgroundView()
+        }
+    }
+    
+    override func loadView() {
+        view = tableView
+    }
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -38,7 +43,7 @@ private extension ContactListViewController {
     }
     
     func configureNavBar() {
-        title = "Contacts"
+        title = "Контакты"
         navigationController?.navigationBar.prefersLargeTitles = true
         setupNavBarAppearance()
         setupRightBarButton()
@@ -70,10 +75,17 @@ private extension ContactListViewController {
     }
     
     func configureTableView() {
-        view.addSubview(tableView)
+        configureBackgroundView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "contact")
-        tableView.frame = view.bounds
         tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    func configureBackgroundView() {
+        tableView.backgroundView = contacts.isEmpty
+        ? EmptyStateView(title: "Список контактов пуст",
+                         message: "Загрузите или создайте новый нажав на \"+\"")
+        : nil
     }
 }
 
@@ -83,7 +95,7 @@ private extension ContactListViewController {
     @objc func showActionSheet() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let fetchContacts = UIAlertAction(title: "Fetch contacts", style: .default) { _ in
+        let fetchContacts = UIAlertAction(title: "Загрузить контакты", style: .default) { _ in
             NetworkManager.shared.fetchContacts { result in
                 switch result {
                 case .success(let contacts):
@@ -95,14 +107,14 @@ private extension ContactListViewController {
             }
         }
         
-        let createNewContact = UIAlertAction(title: "Create contact", style: .default) { _ in
+        let createNewContact = UIAlertAction(title: "Создать контакт", style: .default) { _ in
             self.presentNewContactController()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Закрыть", style: .cancel)
         
-        alert.addAction(fetchContacts)
         alert.addAction(createNewContact)
+        alert.addAction(fetchContacts)
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }
@@ -112,11 +124,11 @@ private extension ContactListViewController {
         newContactVC.delegate = self
         present(newContactVC, animated: true)
     }
-    
 }
 
 // MARK: - UITableViewDataSource
 extension ContactListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         contacts.count
     }
