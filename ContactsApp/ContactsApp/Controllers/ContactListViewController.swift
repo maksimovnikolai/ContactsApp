@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewContactViewControllerDelegate: AnyObject {
-    func saveContact(_ newContactViewController: NewContactViewController , _ contact: Contact)
+    func saveContact(_ newContactViewController: NewContactViewController, _ contact: Contact)
 }
 
 final class ContactListViewController: UIViewController {
@@ -98,6 +98,16 @@ extension ContactListViewController: UITableViewDataSource {
         content.text = contact.fullName
         cell.contentConfiguration = content
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension ContactListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            contacts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
 
