@@ -7,11 +7,10 @@
 
 import Foundation
 
-struct Contact {
+struct Contact: Decodable {
     let name: String
-    let surName: String
-    
-    var fullName: String {
-        "\(name) \(surName)"
-    }
+    let username: String
+    let email: String
+    let phone: String
+    let website: String
 }
