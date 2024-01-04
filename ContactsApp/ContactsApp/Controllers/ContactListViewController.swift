@@ -30,23 +30,22 @@ final class ContactListViewController: UIViewController {
 }
 
 // MARK: - Private methods
-extension ContactListViewController {
+private extension ContactListViewController {
     
-    private func commonInit() {
+    func commonInit() {
         configureNavBar()
         configureTableView()
     }
     
-    private func configureNavBar() {
+    func configureNavBar() {
         title = "Contacts"
         navigationController?.navigationBar.prefersLargeTitles = true
         setupNavBarAppearance()
         setupRightBarButton()
     }
     
-    private func setupNavBarAppearance() {
+    func setupNavBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = UIColor(
             red: 21/255,
             green: 101/255,
@@ -61,28 +60,59 @@ extension ContactListViewController {
         navigationController?.navigationBar.tintColor = .white
     }
     
-    private func setupRightBarButton() {
+    func setupRightBarButton() {
         let presentButton = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
-            action: #selector(presentNewContactController)
+            action: #selector(showActionSheet)
         )
         navigationItem.rightBarButtonItem = presentButton
     }
     
-    @objc
-    private func presentNewContactController() {
-        let newContactVC = NewContactViewController()
-        newContactVC.delegate = self
-        present(newContactVC, animated: true)
-    }
-    
-    private func configureTableView() {
+    func configureTableView() {
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "contact")
         tableView.frame = view.bounds
         tableView.dataSource = self
     }
+}
+
+// MARK: - Action Sheet
+private extension ContactListViewController {
+    
+    @objc func showActionSheet() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let fetchContacts = UIAlertAction(title: "Fetch contacts", style: .default) { _ in
+            NetworkManager.shared.fetchContacts { result in
+                switch result {
+                case .success(let contacts):
+                    self.contacts = contacts
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        let createNewContact = UIAlertAction(title: "Create contact", style: .default) { _ in
+            self.presentNewContactController()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(fetchContacts)
+        alert.addAction(createNewContact)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
+    func presentNewContactController() {
+        let newContactVC = NewContactViewController()
+        newContactVC.delegate = self
+        present(newContactVC, animated: true)
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -95,7 +125,7 @@ extension ContactListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath)
         let contact = contacts[indexPath.row]
         var content = cell.defaultContentConfiguration()
-        content.text = contact.fullName
+        content.text = contact.name
         cell.contentConfiguration = content
         return cell
     }
