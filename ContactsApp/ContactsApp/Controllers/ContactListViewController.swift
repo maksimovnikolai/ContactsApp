@@ -15,6 +15,7 @@ final class ContactListViewController: UIViewController {
     
     // MARK: Private properties
     private let tableView = UITableView()
+    private let activityIndicator = UIActivityIndicatorView()
     
     private var contacts: [Contact] = [] {
         didSet {
@@ -40,6 +41,18 @@ private extension ContactListViewController {
     func commonInit() {
         configureNavBar()
         configureTableView()
+        configureActivityIndicatorView()
+    }
+    
+    func configureActivityIndicatorView() {
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
+        activityIndicator.style = .large
+        activityIndicator.color = .red
+        activityIndicator.hidesWhenStopped = true
+    
     }
     
     func configureNavBar() {
@@ -95,12 +108,14 @@ private extension ContactListViewController {
     @objc func showActionSheet() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let fetchContacts = UIAlertAction(title: "Загрузить контакты", style: .default) { _ in
+        let fetchContacts = UIAlertAction(title: "Загрузить контакты", style: .default) { [weak self] _ in
+            self?.activityIndicator.startAnimating()
             NetworkManager.shared.fetchContacts { result in
                 switch result {
                 case .success(let contacts):
-                    self.contacts = contacts
-                    self.tableView.reloadData()
+                    self?.contacts = contacts
+                    self?.activityIndicator.stopAnimating()
+                    self?.tableView.reloadData()
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
