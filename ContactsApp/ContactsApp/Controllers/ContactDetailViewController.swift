@@ -19,6 +19,7 @@ final class ContactDetailViewController: UIViewController {
     private lazy var phone: UILabel = .makeLabel(withTitle: "phone", size: 16)
     private lazy var website: UILabel = .makeLabel(withTitle: "website", size: 16)
     private lazy var verticalStack: UIStackView = .makeStackView(axis: .vertical)
+    private lazy var navigationBar = UINavigationBar()
     
     
     // MARK: Life cycle
@@ -35,6 +36,8 @@ private extension ContactDetailViewController {
         configureContactImageView()
         configureStackView()
         updateUI()
+        configureNavigationBar()
+        setupNavigationBarConstraints()
     }
     
     func updateUI() {
@@ -56,16 +59,51 @@ private extension ContactDetailViewController {
         [name, userName, email, phone, website].forEach { verticalStack.addArrangedSubview($0) }
         setupStackViewConstraints()
     }
+    
+    func configureNavigationBar() {
+        let cancelButton = UIBarButtonItem(title: "Закрыть", style: .plain, target: self, action: #selector(dismissViewController))
+        
+        let navigationItem = UINavigationItem(title: "\(contact.name)")
+        navigationItem.rightBarButtonItem = cancelButton
+        
+        navigationBar.items = [navigationItem]
+        navigationBar.tintColor = .white
+        
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = UIColor(
+            red: 21/255,
+            green: 101/255,
+            blue: 192/255,
+            alpha: 194/255
+        )
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationBar.standardAppearance = navigationBarAppearance
+    }
+    
+    @objc
+    func dismissViewController() {
+        dismiss(animated: true)
+    }
 }
 
 // MARK: - Constraints
 private extension ContactDetailViewController {
     
+    func setupNavigationBarConstraints() {
+        view.addSubview(navigationBar)
+        navigationBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
+    
     func setupPersonImageConstraints() {
         personImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(personImage)
         NSLayoutConstraint.activate([
-            personImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            personImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             personImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             personImage.widthAnchor.constraint(equalToConstant: 300),
             personImage.heightAnchor.constraint(equalToConstant: 300),
