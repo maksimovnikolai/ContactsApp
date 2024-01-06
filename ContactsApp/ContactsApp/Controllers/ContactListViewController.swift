@@ -38,6 +38,12 @@ final class ContactListViewController: UIViewController {
 private extension ContactListViewController {
     
     func commonInit() {
+        view.backgroundColor = UIColor(
+            red: 248/255,
+            green: 250/255,
+            blue: 229/255,
+            alpha: 1
+        )
         configureNavBar()
         configureTableView()
         configureActivityIndicatorView()
@@ -51,7 +57,7 @@ private extension ContactListViewController {
         activityIndicator.style = .large
         activityIndicator.color = .red
         activityIndicator.hidesWhenStopped = true
-    
+        
     }
     
     func configureNavBar() {
@@ -153,6 +159,7 @@ extension ContactListViewController: UITableViewDataSource {
         var content = cell.defaultContentConfiguration()
         content.text = contact.name
         cell.contentConfiguration = content
+        cell.backgroundColor = UIColor(red: 248/255, green: 250/255, blue: 229/255, alpha: 1)
         return cell
     }
 }

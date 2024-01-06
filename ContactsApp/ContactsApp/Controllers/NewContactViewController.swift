@@ -33,7 +33,12 @@ final class NewContactViewController: UIViewController {
 private extension NewContactViewController {
     
     func commonInit() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(
+            red: 248/255,
+            green: 250/255,
+            blue: 229/255,
+            alpha: 1
+        )
         setupConstraintsForNavBar()
         setupNavigationBar()
         setupConstraintsForVStack()

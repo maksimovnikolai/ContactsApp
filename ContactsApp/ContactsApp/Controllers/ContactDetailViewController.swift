@@ -50,7 +50,7 @@ private extension ContactDetailViewController {
     }
     
     func configureContactImageView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(red: 248/255, green: 250/255, blue: 229/255, alpha: 1)
         personImage.image = UIImage(systemName: "person")
         setupPersonImageConstraints()
     }
