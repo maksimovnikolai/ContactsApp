@@ -17,6 +17,10 @@
 		AD04A0022B45996100C7226B /* UITextField + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A0012B45996100C7226B /* UITextField + extension.swift */; };
 		AD04A0042B459D3300C7226B /* UILabel + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A0032B459D3300C7226B /* UILabel + extension.swift */; };
 		AD04A0062B459F7A00C7226B /* UIStackView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A0052B459F7A00C7226B /* UIStackView+extension.swift */; };
+		AD04A0092B46AA4600C7226B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A0082B46AA4600C7226B /* NetworkManager.swift */; };
+		AD04A00C2B46BA7300C7226B /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A00B2B46BA7300C7226B /* Link.swift */; };
+		AD04A00F2B46CE3B00C7226B /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD04A00E2B46CE3B00C7226B /* EmptyStateView.swift */; };
+		ADFC9D5A2B47CD4F00ABA9D3 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC9D592B47CD4F00ABA9D3 /* ContactDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		AD04A0012B45996100C7226B /* UITextField + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + extension.swift"; sourceTree = "<group>"; };
 		AD04A0032B459D3300C7226B /* UILabel + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + extension.swift"; sourceTree = "<group>"; };
 		AD04A0052B459F7A00C7226B /* UIStackView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+extension.swift"; sourceTree = "<group>"; };
+		AD04A0082B46AA4600C7226B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		AD04A00B2B46BA7300C7226B /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		AD04A00E2B46CE3B00C7226B /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		ADFC9D592B47CD4F00ABA9D3 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +72,13 @@
 		AD049FE02B44555000C7226B /* ContactsApp */ = {
 			isa = PBXGroup;
 			children = (
+				AD04A00A2B46B98400C7226B /* Secrets */,
 				AD049FF52B44559B00C7226B /* Application */,
 				AD04A0002B45991B00C7226B /* Extensions */,
 				AD049FF92B4457D900C7226B /* Model */,
+				AD04A00D2B46CE0300C7226B /* Views */,
 				AD049FF82B4455E100C7226B /* Controllers */,
+				AD04A0072B46AA2600C7226B /* Services */,
 				AD049FF62B4455A500C7226B /* Resources */,
 				AD049FF72B4455B000C7226B /* SupportingFiles */,
 			);
@@ -105,6 +116,7 @@
 			children = (
 				AD049FFC2B4458DF00C7226B /* ContactListViewController.swift */,
 				AD049FFE2B456FD400C7226B /* NewContactViewController.swift */,
+				ADFC9D592B47CD4F00ABA9D3 /* ContactDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,6 +137,30 @@
 				AD04A0052B459F7A00C7226B /* UIStackView+extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD04A0072B46AA2600C7226B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AD04A0082B46AA4600C7226B /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AD04A00A2B46B98400C7226B /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				AD04A00B2B46BA7300C7226B /* Link.swift */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
+		AD04A00D2B46CE0300C7226B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD04A00E2B46CE3B00C7226B /* EmptyStateView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +233,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD04A0092B46AA4600C7226B /* NetworkManager.swift in Sources */,
 				AD049FFB2B4457F000C7226B /* Contact.swift in Sources */,
+				AD04A00F2B46CE3B00C7226B /* EmptyStateView.swift in Sources */,
 				AD04A0022B45996100C7226B /* UITextField + extension.swift in Sources */,
 				AD049FFF2B456FD400C7226B /* NewContactViewController.swift in Sources */,
 				AD04A0042B459D3300C7226B /* UILabel + extension.swift in Sources */,
@@ -205,6 +243,8 @@
 				AD04A0062B459F7A00C7226B /* UIStackView+extension.swift in Sources */,
 				AD049FE22B44555000C7226B /* AppDelegate.swift in Sources */,
 				AD049FE42B44555000C7226B /* SceneDelegate.swift in Sources */,
+				ADFC9D5A2B47CD4F00ABA9D3 /* ContactDetailViewController.swift in Sources */,
+				AD04A00C2B46BA7300C7226B /* Link.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
