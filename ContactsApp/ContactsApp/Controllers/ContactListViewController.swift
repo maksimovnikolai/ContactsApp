@@ -19,7 +19,6 @@ final class ContactListViewController: UIViewController {
     
     private var contacts: [Contact] = [] {
         didSet {
-            print(Thread.current)
             configureBackgroundView()
         }
     }
@@ -160,6 +159,16 @@ extension ContactListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension ContactListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let contact = contacts[indexPath.row]
+        let detailVC = ContactDetailViewController()
+        detailVC.contact = contact
+        present(detailVC, animated: true)
+        
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             contacts.remove(at: indexPath.row)
