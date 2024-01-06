@@ -17,7 +17,7 @@ final class NewContactViewController: UIViewController {
     private var doneButton = UIBarButtonItem()
     private let nameTextField: UITextField = .makeTextField(pHolder: "Введите имя*")
     private let lastNameTextField: UITextField = .makeTextField(pHolder: "Введите фамилию")
-    private let nameLabel: UILabel = .makeLabel(withTitle: "Имя (coобязательно для заполнения)", size: 16)
+    private let nameLabel: UILabel = .makeLabel(withTitle: "Имя (обязательно для заполнения)", size: 16)
     private let lastNameLabel: UILabel = .makeLabel(withTitle: "Фамиля", size: 16)
     private let verticalStack: UIStackView = .makeStackView(axis: .vertical, spacing: 20)
     
