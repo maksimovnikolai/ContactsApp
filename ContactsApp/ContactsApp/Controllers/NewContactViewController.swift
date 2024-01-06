@@ -15,10 +15,10 @@ final class NewContactViewController: UIViewController {
     // MARK: Private properties
     private var navigationBar = UINavigationBar()
     private var doneButton = UIBarButtonItem()
-    private let nameTextField: UITextField = .makeTextField(pHolder: "First name")
-    private let lastNameTextField: UITextField = .makeTextField(pHolder: "Last name")
-    private let nameLabel: UILabel = .makeLabel(withTitle: "Name", size: 16)
-    private let lastNameLabel: UILabel = .makeLabel(withTitle: "Last name", size: 16)
+    private let nameTextField: UITextField = .makeTextField(pHolder: "Введите имя*")
+    private let lastNameTextField: UITextField = .makeTextField(pHolder: "Введите фамилию")
+    private let nameLabel: UILabel = .makeLabel(withTitle: "Имя (обязательно для заполнения)", size: 16)
+    private let lastNameLabel: UILabel = .makeLabel(withTitle: "Фамиля", size: 16)
     private let verticalStack: UIStackView = .makeStackView(axis: .vertical, spacing: 20)
     
     // MARK: Life cycle
@@ -39,16 +39,15 @@ private extension NewContactViewController {
         setupConstraintsForVStack()
         setupVStack()
         configureNameTextField()
-        
     }
     
     // MARK: Configure Navigation Bar
     func setupNavigationBar() {
-        let cancelButton = getBurButtonItem(withTitle: "Cancel", action: #selector(cancelButtonPressed))
-        doneButton = getBurButtonItem(withTitle: "Done", action: #selector(doneButtonPressed))
+        let cancelButton = getBurButtonItem(withTitle: "Закрыть", action: #selector(cancelButtonPressed))
+        doneButton = getBurButtonItem(withTitle: "Готово", action: #selector(doneButtonPressed))
         doneButton.isEnabled = false
         
-        let navigationItem = UINavigationItem(title: "New Contact")
+        let navigationItem = UINavigationItem(title: "Новый контакт")
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = doneButton
         
@@ -56,7 +55,6 @@ private extension NewContactViewController {
         navigationBar.tintColor = .white
         
         let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithOpaqueBackground()
         navigationBarAppearance.backgroundColor = UIColor(
             red: 21/255,
             green: 101/255,
@@ -87,10 +85,10 @@ private extension NewContactViewController {
     }
    
     func saveEndExit() {
-        guard let firstName = nameTextField.text else { return }
+        guard let name = nameTextField.text else { return }
         guard let lastName = lastNameTextField.text else { return }
         
-        let contact = Contact(name: firstName, surName: lastName)
+        let contact = Contact(name: "\(name) \(lastName)", username: "", email: "", phone: "", website: "")
         delegate?.saveContact(self, contact)
         dismiss(animated: true)
     }
